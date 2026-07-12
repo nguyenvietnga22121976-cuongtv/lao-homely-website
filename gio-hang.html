@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart | Lao Homely Restaurant</title>
+<meta name="description" content="Cart - Lao Homely Restaurant, Pakse, Champasak, Lao PDR">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">LHR</span>
+        <span class="brand-text">
+          <span class="brand-main"><span class="lang-lo">ຮ້ານອາຫານລາວໂຮມລີ້</span><span class="lang-en">Lao Homely Restaurant</span><span class="lang-vi">Nhà Hàng Lao Homely</span></span>
+          <span class="brand-sub"><span class="lang-lo">ອາຫານບ້ານໆ ແບບລາວແທ້</span><span class="lang-en">Authentic Lao Homestyle Food</span><span class="lang-vi">Ẩm thực Lào chuẩn vị gia đình</span></span>
+        </span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html"><span class="lang-lo">ໜ້າຫຼັກ</span><span class="lang-en">Home</span><span class="lang-vi">Trang chủ</span></a></li>
+          <li><a href="menu.html"><span class="lang-lo">ເມນູອາຫານ</span><span class="lang-en">Menu</span><span class="lang-vi">Thực đơn</span></a></li>
+          <li><a href="gioi-thieu.html"><span class="lang-lo">ກ່ຽວກັບພວກເຮົາ</span><span class="lang-en">About Us</span><span class="lang-vi">Giới thiệu</span></a></li>
+          <li><a href="lien-he.html"><span class="lang-lo">ຕິດຕໍ່</span><span class="lang-en">Contact</span><span class="lang-vi">Liên hệ</span></a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-link" class="active" href="gio-hang.html">
+          <span class="cart-icon">CART</span>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+        <div class="lang-switch" role="group" aria-label="Language switch">
+          <button type="button" data-set-lang="lo">LAO</button>
+          <button type="button" data-set-lang="en">EN</button>
+          <button type="button" data-set-lang="vi">VI</button>
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Menu">MENU</button>
+      </div>
+    </div>
+  </header>
+  <main>
+  
+  <section class="page-hero">
+    <div class="section-inner">
+      <p class="eyebrow"><span class="lang-lo">ຮ້ານອາຫານລາວໂຮມລີ້</span><span class="lang-en">Lao Homely Restaurant</span><span class="lang-vi">Nhà Hàng Lao Homely</span></p>
+      <h1><span class="lang-lo">ກະຕ່າ ແລະ ສັ່ງຊື້</span><span class="lang-en">Cart &amp; Checkout</span><span class="lang-vi">Giỏ hàng &amp; Đặt món</span></h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div id="cart-empty-msg" class="empty-cart-msg" hidden>
+        <p><span class="lang-lo">ກະຕ່າຂອງທ່ານຍັງບໍ່ມີສິນຄ້າ.</span><span class="lang-en">Your cart is empty.</span><span class="lang-vi">Giỏ hàng của bạn đang trống.</span></p>
+        <a class="btn btn-primary" href="menu.html"><span class="lang-lo">ໄປເບິ່ງເມນູ</span><span class="lang-en">Go to Menu</span><span class="lang-vi">Xem thực đơn</span></a>
+      </div>
+
+      <div id="cart-content">
+        <div class="cart-table-wrap">
+          <table class="cart-table" id="cart-table">
+            <thead>
+              <tr>
+                <th><span class="lang-lo">ລາຍການ</span><span class="lang-en">Item</span><span class="lang-vi">Món ăn</span></th>
+                <th><span class="lang-lo">ລາຄາ</span><span class="lang-en">Price</span><span class="lang-vi">Đơn giá</span></th>
+                <th><span class="lang-lo">ຈຳນວນ</span><span class="lang-en">Qty</span><span class="lang-vi">SL</span></th>
+                <th><span class="lang-lo">ລວມ</span><span class="lang-en">Subtotal</span><span class="lang-vi">Thành tiền</span></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="cart-rows"></tbody>
+          </table>
+        </div>
+        <div class="cart-total-row">
+          <span><span class="lang-lo">ລວມທັງໝົດ</span><span class="lang-en">Total</span><span class="lang-vi">Tổng cộng</span>:</span>
+          <span id="cart-total">0 Lak</span>
+        </div>
+
+        <h2 class="section-title"><span class="lang-lo">ຂໍ້ມູນຜູ້ສັ່ງ</span><span class="lang-en">Your Details</span><span class="lang-vi">Thông tin đặt hàng</span></h2>
+        <form id="checkout-form" class="checkout-form">
+          <label><span class="lang-lo">ຊື່</span><span class="lang-en">Full Name</span><span class="lang-vi">Họ và tên</span> *
+            <input type="text" id="cf-name" required>
+          </label>
+          <label><span class="lang-lo">ເບີໂທ</span><span class="lang-en">Phone Number</span><span class="lang-vi">Số điện thoại</span> *
+            <input type="tel" id="cf-phone" required>
+          </label>
+          <fieldset class="delivery-fieldset">
+            <legend><span class="lang-lo">ຮັບເອົາແບບໃດ</span><span class="lang-en">Order Type</span><span class="lang-vi">Hình thức nhận</span></legend>
+            <label class="radio-label"><input type="radio" name="cf-delivery" value="pickup" checked> <span class="lang-lo">ໄປຮັບເອງທີ່ຮ້ານ</span><span class="lang-en">Pick up at restaurant</span><span class="lang-vi">Tự đến lấy tại quán</span></label>
+            <label class="radio-label"><input type="radio" name="cf-delivery" value="delivery"> <span class="lang-lo">ຈັດສົ່ງ</span><span class="lang-en">Delivery</span><span class="lang-vi">Giao hàng</span></label>
+          </fieldset>
+          <label id="cf-address-wrap" hidden><span class="lang-lo">ທີ່ຢູ່ຈັດສົ່ງ</span><span class="lang-en">Delivery Address</span><span class="lang-vi">Địa chỉ giao hàng</span>
+            <textarea id="cf-address" rows="2"></textarea>
+          </label>
+          <label><span class="lang-lo">ໝາຍເຫດ</span><span class="lang-en">Note</span><span class="lang-vi">Ghi chú</span>
+            <textarea id="cf-note" rows="2"></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-lg"><span class="lang-lo">ສ້າງໃບສັ່ງຊື້</span><span class="lang-en">Create Order</span><span class="lang-vi">Tạo đơn hàng</span></button>
+        </form>
+      </div>
+
+      <div id="payment-step" class="payment-step" hidden>
+        <h2 class="section-title"><span class="lang-lo">ຂັ້ນຕອນທີ 2: ຊຳລະເງິນ</span><span class="lang-en">Step 2: Payment</span><span class="lang-vi">Bước 2: Thanh toán</span></h2>
+        <p><span class="lang-lo">ກະລຸນາໂອນເງິນຕາມຍອດລວມຂ້າງລຸ່ມ ຜ່ານ QR ຫຼືເລກບັນຊີທະນາຄານຂອງຮ້ານ ແລ້ວກົດປຸ່ມສົ່ງໃບສັ່ງຊື້ຜ່ານ WhatsApp ພ້ອມຮູບຫຼັກຖານການໂອນ.</span><span class="lang-en">Please transfer the total amount below via the restaurant's bank QR/account, then click the button to send your order via WhatsApp along with a screenshot of the transfer.</span><span class="lang-vi">Vui lòng chuyển khoản đúng số tiền bên dưới qua QR/tài khoản ngân hàng của quán, sau đó bấm nút gửi đơn qua WhatsApp kèm ảnh chụp màn hình chuyển khoản.</span></p>
+        <div class="bank-info-box">
+          <div class="img-placeholder ph-square qr-placeholder">
+            <span class="ph-icon">QR</span>
+            <span class="ph-label"><span class="lang-lo">QR ໂອນເງິນທະນາຄານ</span><span class="lang-en">Bank Transfer QR</span><span class="lang-vi">Mã QR chuyển khoản</span></span>
+            <span class="ph-hint">-> images/qr-chuyen-khoan.png</span>
+          </div>
+          <ul class="bank-details">
+            <li><strong><span class="lang-lo">ທະນາຄານ</span><span class="lang-en">Bank</span><span class="lang-vi">Ngân hàng</span>:</strong> [<span class="lang-lo">ອານຕື່ມ ວດ. BCEL / LDB</span><span class="lang-en">add e.g. BCEL / LDB</span><span class="lang-vi">anh bổ sung, VD: BCEL / LDB</span>]</li>
+            <li><strong><span class="lang-lo">ຊື່ບັນຊີ</span><span class="lang-en">Account Name</span><span class="lang-vi">Tên tài khoản</span>:</strong> [<span class="lang-lo">ອານຕື່ມ</span><span class="lang-en">to be added</span><span class="lang-vi">anh bổ sung</span>]</li>
+            <li><strong><span class="lang-lo">ເລກບັນຊີ</span><span class="lang-en">Account Number</span><span class="lang-vi">Số tài khoản</span>:</strong> [<span class="lang-lo">ອານຕື່ມ</span><span class="lang-en">to be added</span><span class="lang-vi">anh bổ sung</span>]</li>
+            <li><strong><span class="lang-lo">ຈຳນວນເງິນ</span><span class="lang-en">Amount</span><span class="lang-vi">Số tiền</span>:</strong> <span id="payment-amount">0 Lak</span></li>
+            <li><strong><span class="lang-lo">ລະຫັດອໍເດີ</span><span class="lang-en">Order Code</span><span class="lang-vi">Mã đơn hàng</span>:</strong> <span id="order-code">-</span></li>
+          </ul>
+        </div>
+        <a id="whatsapp-send-btn" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener"><span class="lang-lo">ສົ່ງໃບສັ່ງຊື້ຜ່ານ WhatsApp</span><span class="lang-en">Send Order via WhatsApp</span><span class="lang-vi">Gửi đơn hàng qua WhatsApp</span></a>
+        <p class="note"><span class="lang-lo">(ໝາຍເຫດ: ນີ້ບໍ່ແມ່ນລະບົບຊຳລະເງິນອັດຕະໂນມັດ - ຮ້ານຈະຢືນຢັນອໍເດີຫຼັງຈາກໄດ້ຮັບຫຼັກຖານໂອນເງິນ)</span><span class="lang-en">(Note: this is not an automated payment gateway - the restaurant will confirm the order after receiving proof of transfer.)</span><span class="lang-vi">(Ghi chú: đây không phải cổng thanh toán tự động - quán sẽ xác nhận đơn sau khi nhận được ảnh chuyển khoản.)</span></p>
+      </div>
+    </div>
+  </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="brand-main footer-brand"><span class="lang-lo">ຮ້ານອາຫານລາວໂຮມລີ້</span><span class="lang-en">Lao Homely Restaurant</span><span class="lang-vi">Nhà Hàng Lao Homely</span></div>
+        <p><span class="lang-lo">ອາຫານບ້ານໆ ແບບລາວແທ້ ໃຈກາງເມືອງປາກເຊ</span><span class="lang-en">Authentic Lao homestyle cooking in the heart of Pakse</span><span class="lang-vi">Ẩm thực Lào chuẩn vị gia đình giữa lòng Pakse</span></p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="lang-lo">ຕິດຕໍ່</span><span class="lang-en">Contact</span><span class="lang-vi">Liên hệ</span></h4>
+        <p>Pakse, Champasak, Lao PDR</p>
+        <p>Tel: <a href="tel:+8562012345678">+856 20 1234 5678</a></p>
+        <p>WhatsApp: <a href="https://wa.me/8562012345678" target="_blank" rel="noopener">+856 20 1234 5678</a></p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="lang-lo">ຕິດຕາມພວກເຮົາ</span><span class="lang-en">Follow Us</span><span class="lang-vi">Theo dõi chúng tôi</span></h4>
+        <p>Facebook: Lao Homely Restaurant</p>
+        <p>TikTok: @laohomelyrestaurant</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Lao Homely Restaurant &middot; <span class="lang-lo">ສະຫງວນລິຂະສິດ</span><span class="lang-en">All rights reserved</span><span class="lang-vi">Bảo lưu mọi quyền</span></p>
+    </div>
+  </footer>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
