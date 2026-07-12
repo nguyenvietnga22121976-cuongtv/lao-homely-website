@@ -151,6 +151,24 @@ p .lang-lo,p .lang-en,p .lang-vi,
   border:2px solid var(--gold);box-shadow:var(--shadow);display:block;
 }
 
+/* ---------- table order banner (QR / ban an) ---------- */
+.table-banner{
+  margin-top:1.2rem;padding:.9rem 1.4rem;border-radius:var(--radius);
+  background:var(--teal);color:#fff;font-weight:700;font-size:1.15rem;
+  display:flex;align-items:center;gap:.6rem;box-shadow:var(--shadow);
+}
+.table-order-banner, #table-order-banner{margin-top:0;margin-bottom:1.5rem;}
+.kitchen-order-panel{
+  margin-top:1rem;padding:1.6rem;border-radius:var(--radius);
+  background:var(--cream-alt);border:2px solid var(--gold);box-shadow:var(--shadow);
+}
+.kitchen-order-panel .btn{margin-top:.8rem;}
+.kitchen-sent-msg{
+  margin-top:1.2rem;padding:1rem 1.2rem;border-radius:var(--radius);
+  background:#e8f5e9;border:2px solid #2e7d32;color:#1b5e20;
+}
+.kitchen-sent-msg .btn{margin-top:.8rem;}
+
 /* ---------- menu page ---------- */
 .menu-section{margin-bottom:2.6rem;}
 .menu-section-title{

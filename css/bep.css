@@ -1,0 +1,55 @@
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#1b1b1b;color:#222;}
+.bep-header{
+  background:#7a1f1f;color:#fff;padding:1.2rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;
+  position:sticky;top:0;z-index:10;
+}
+.bep-header h1{margin:0;font-size:1.6rem;}
+.bep-status{font-size:1rem;opacity:.9;}
+.bep-main{padding:1.5rem 2rem 3rem;}
+.bep-section{margin-bottom:2.5rem;}
+.bep-section h2{
+  color:#fff;font-size:1.3rem;margin-bottom:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+}
+.bep-clear-btn{
+  font-size:.85rem;padding:.4rem .9rem;border-radius:6px;border:none;
+  background:#444;color:#fff;cursor:pointer;
+}
+.bep-clear-btn:hover{background:#666;}
+.bep-empty-msg{color:#ccc;font-size:1.1rem;}
+.bep-order-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;
+}
+.bep-card{
+  background:#fff;border-radius:12px;padding:1rem 1.2rem;box-shadow:0 3px 10px rgba(0,0,0,.3);
+  border-left:8px solid #d4a017;
+}
+.bep-card-done{border-left-color:#4caf50;opacity:.65;}
+.bep-card-head{
+  display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;
+}
+.bep-card-table{font-size:1.4rem;font-weight:800;color:#7a1f1f;}
+.bep-card-time{font-size:1rem;color:#666;font-weight:600;}
+.bep-card-code{font-size:.85rem;color:#888;margin-bottom:.6rem;}
+.bep-card-items{list-style:none;margin:0 0 .6rem;padding:0;}
+.bep-card-items li{
+  display:flex;gap:.5rem;font-size:1.1rem;padding:.2rem 0;border-bottom:1px dashed #eee;
+}
+.bep-item-qty{font-weight:800;color:#7a1f1f;min-width:2.4rem;}
+.bep-card-total{font-weight:700;margin-bottom:.7rem;}
+.bep-done-btn{
+  width:100%;padding:.7rem;font-size:1.05rem;font-weight:700;border:none;border-radius:8px;
+  background:#2e7d32;color:#fff;cursor:pointer;
+}
+.bep-done-btn:hover{background:#256428;}
+.bep-done-btn:disabled{opacity:.6;cursor:not-allowed;}
+.bep-card-done-label{
+  text-align:center;font-weight:700;color:#2e7d32;padding:.5rem;background:#e8f5e9;border-radius:8px;
+}
+.bep-done-grid .bep-card{padding:.7rem .9rem;}
+@media (max-width:600px){
+  .bep-header{padding:1rem;flex-direction:column;align-items:flex-start;}
+  .bep-main{padding:1rem;}
+  .bep-card-table{font-size:1.2rem;}
+}
