@@ -1,9 +1,68 @@
 (function () {
   var CART_KEY = "homely_cart";
+  var TABLE_KEY = "homely_table";
   var WHATSAPP_DIGITS = "8562094059629";
 
   function getLang() {
     return document.documentElement.getAttribute("data-lang") || "en";
+  }
+
+  /* ---------------- table (QR order) handling ---------------- */
+  function getTableNumber() {
+    var v = null;
+    try { v = localStorage.getItem(TABLE_KEY); } catch (e) {}
+    return v ? parseInt(v, 10) : null;
+  }
+
+  function setTableNumber(n) {
+    try { localStorage.setItem(TABLE_KEY, String(n)); } catch (e) {}
+  }
+
+  function initTableFromUrl() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var t = parseInt(params.get("table"), 10);
+      if (t && t > 0) setTableNumber(t);
+    } catch (e) {}
+  }
+
+  function tableBannerHtml(n) {
+    return '<span class="lang-lo">ໂຕະທີ ' + n + '</span>' +
+           '<span class="lang-en">Table ' + n + '</span>' +
+           '<span class="lang-vi">Bàn số ' + n + '</span>';
+  }
+
+  function renderTableBanners() {
+    var n = getTableNumber();
+    var menuBanner = document.getElementById("table-banner");
+    var menuText = document.getElementById("table-banner-text");
+    if (menuBanner && menuText) {
+      if (n) {
+        menuText.innerHTML = tableBannerHtml(n);
+        menuBanner.hidden = false;
+      } else {
+        menuBanner.hidden = true;
+      }
+    }
+    var cartBanner = document.getElementById("table-order-banner");
+    var cartText = document.getElementById("table-order-banner-text");
+    if (cartBanner && cartText) {
+      if (n) {
+        cartText.innerHTML = tableBannerHtml(n);
+        cartBanner.hidden = false;
+      } else {
+        cartBanner.hidden = true;
+      }
+    }
+  }
+
+  /* ---------------- firebase (kitchen board backend) ---------------- */
+  function initFirebaseApp() {
+    try {
+      if (typeof firebase !== "undefined" && window.HOMELY_FIREBASE_CONFIG && !firebase.apps.length) {
+        firebase.initializeApp(window.HOMELY_FIREBASE_CONFIG);
+      }
+    } catch (e) {}
   }
 
   function getCart() {
@@ -137,6 +196,11 @@
     var emptyMsg = document.getElementById("cart-empty-msg");
     var content = document.getElementById("cart-content");
     var paymentStep = document.getElementById("payment-step");
+    var onlineSection = document.getElementById("online-order-section");
+    var kitchenPanel = document.getElementById("kitchen-order-panel");
+    var tableNum = getTableNumber();
+
+    renderTableBanners();
 
     if (cart.length === 0) {
       if (emptyMsg) emptyMsg.hidden = false;
@@ -146,6 +210,23 @@
     }
     if (emptyMsg) emptyMsg.hidden = true;
     if (content) content.hidden = false;
+
+    if (tableNum) {
+      if (onlineSection) onlineSection.hidden = true;
+      if (paymentStep) paymentStep.hidden = true;
+      if (kitchenPanel) kitchenPanel.hidden = false;
+      var sentMsg = document.getElementById("kitchen-sent-msg");
+      var sendBtn = document.getElementById("send-kitchen-btn");
+      var tableWrap = document.querySelector(".cart-table-wrap");
+      var totalRow = document.querySelector(".cart-total-row");
+      if (sentMsg) sentMsg.hidden = true;
+      if (sendBtn) { sendBtn.hidden = false; sendBtn.disabled = false; }
+      if (tableWrap) tableWrap.hidden = false;
+      if (totalRow) totalRow.hidden = false;
+    } else {
+      if (onlineSection) onlineSection.hidden = false;
+      if (kitchenPanel) kitchenPanel.hidden = true;
+    }
 
     rowsBody.innerHTML = "";
     var total = 0;
@@ -178,6 +259,59 @@
       btn.addEventListener("click", function () {
         removeLine(parseInt(btn.getAttribute("data-index"), 10));
       });
+    });
+  }
+
+  /* ---------------- kitchen order (table QR flow) ---------------- */
+  function buildKitchenOrderItems(cart) {
+    return cart.map(function (line) {
+      var names = lineName(line);
+      return {
+        nameLo: names.lo, nameEn: names.en, nameVi: names.vi,
+        qty: line.qty, unitPrice: line.unitPrice,
+        subtotal: line.unitPrice * line.qty
+      };
+    });
+  }
+
+function initKitchenOrder() {
+    var btn = document.getElementById("send-kitchen-btn");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var cart = getCart();
+      var tableNum = getTableNumber();
+      if (!cart.length || !tableNum) return;
+      if (typeof firebase === "undefined" || !firebase.apps || !firebase.apps.length) {
+        alert("Khong ket noi duoc voi he thong bep (kiem tra mang). Vui long thu lai.");
+        return;
+      }
+      var total = cart.reduce(function (sum, l) { return sum + l.unitPrice * l.qty; }, 0);
+      var order = {
+        table: tableNum,
+        items: buildKitchenOrderItems(cart),
+        total: total,
+        status: "moi",
+        createdAt: Date.now()
+      };
+      btn.disabled = true;
+      firebase.database().ref("orders").push(order)
+        .then(function (ref) {
+          var code = "B" + tableNum + "-" + ref.key.slice(-4).toUpperCase();
+          saveCart([]);
+          var tableWrap = document.querySelector(".cart-table-wrap");
+          var totalRow = document.querySelector(".cart-total-row");
+          if (tableWrap) tableWrap.hidden = true;
+          if (totalRow) totalRow.hidden = true;
+          btn.hidden = true;
+          var sentMsg = document.getElementById("kitchen-sent-msg");
+          var codeEl = document.getElementById("kitchen-order-code");
+          if (codeEl) codeEl.textContent = code;
+          if (sentMsg) sentMsg.hidden = false;
+        })
+        .catch(function (err) {
+          btn.disabled = false;
+          alert("Gui don khong thanh cong, vui long thu lai. Loi: " + (err && err.message ? err.message : err));
+        });
     });
   }
 
@@ -258,9 +392,13 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    initFirebaseApp();
+    initTableFromUrl();
+    renderTableBanners();
     updateBadge();
     initMenuControls();
     renderCartPage();
     initCheckoutForm();
+    initKitchenOrder();
   });
 })();
