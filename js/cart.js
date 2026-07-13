@@ -1,6 +1,8 @@
 (function () {
   var CART_KEY = "homely_cart";
   var TABLE_KEY = "homely_table";
+  var PENDING_ORDER_KEY = "homely_pending_wa_order";
+  var PENDING_ORDER_TTL_MS = 6 * 60 * 60 * 1000; // 6 gio - qua khoang nay coi nhu het han, khong hien lai man hinh xac nhan cu
   var KITCHEN_WHATSAPP_1 = "8562094059629";   // 02094059629
   var KITCHEN_WHATSAPP_2 = "8562099316688";   // 02099316688
 
@@ -97,6 +99,25 @@
 
   function fmtPrice(n) {
     return n.toLocaleString("en-US").replace(/,/g, ".") + " Lak";
+  }
+
+  /* ---------------- pending WhatsApp order (survives tab reload/app-switch) ---------------- */
+  function savePendingOrder(order) {
+    try { localStorage.setItem(PENDING_ORDER_KEY, JSON.stringify(order)); } catch (e) {}
+  }
+
+  function getPendingOrder() {
+    var raw = null;
+    try { raw = localStorage.getItem(PENDING_ORDER_KEY); } catch (e) {}
+    if (!raw) return null;
+    var order;
+    try { order = JSON.parse(raw); } catch (e) { return null; }
+    if (!order || !order.ts || (Date.now() - order.ts) > PENDING_ORDER_TTL_MS) return null;
+    return order;
+  }
+
+  function clearPendingOrder() {
+    try { localStorage.removeItem(PENDING_ORDER_KEY); } catch (e) {}
   }
 
   /* setLine: upsert (qty>0) or remove (qty<=0) a single line, matched by dish id */
@@ -266,6 +287,16 @@
     }
     if (noTableMsg) noTableMsg.hidden = true;
 
+    /* Neu vua gui don thanh cong o lan truoc (con han) va khach chua chon mon moi,
+       khoi phuc lai man hinh xac nhan + 2 nut WhatsApp thay vi bao "chua chon mon".
+       Truong hop nay xay ra khi dien thoai/trinh duyet tai lai trang gio-hang.html
+       sau khi khach chuyen qua ung dung WhatsApp roi quay lai. */
+    var pending = getPendingOrder();
+    if (cart.length === 0 && pending && pending.table === tableNum) {
+      showKitchenConfirmation(pending);
+      return;
+    }
+
     if (cart.length === 0) {
       if (emptyMsg) emptyMsg.hidden = false;
       if (content) content.hidden = true;
@@ -344,8 +375,43 @@
     return lines.join("\n");
   }
 
+  /* Hien thi man hinh xac nhan + 2 nut WhatsApp da co san href.
+     Dung chung cho: (1) ngay sau khi gui don thanh cong, va (2) khoi phuc lai
+     khi nguoi dung quay lai trang gio-hang.html sau khi chuyen sang app WhatsApp
+     (dien thoai/trinh duyet co the tai lai trang, lam mat trang thai trong bo nho). */
+  function showKitchenConfirmation(order) {
+    var emptyMsg = document.getElementById("cart-empty-msg");
+    var content = document.getElementById("cart-content");
+    var noTableMsg = document.getElementById("no-table-msg");
+    if (noTableMsg) noTableMsg.hidden = true;
+    if (emptyMsg) emptyMsg.hidden = true;
+    if (content) content.hidden = false;
+
+    var btn = document.getElementById("send-kitchen-btn");
+    var tableWrap = document.querySelector(".cart-table-wrap");
+    var totalRow = document.querySelector(".cart-total-row");
+    var sentMsg = document.getElementById("kitchen-sent-msg");
+    var codeEl = document.getElementById("kitchen-order-code");
+    var wa1 = document.getElementById("wa-send-1");
+    var wa2 = document.getElementById("wa-send-2");
+
+    if (tableWrap) tableWrap.hidden = true;
+    if (totalRow) totalRow.hidden = true;
+    if (btn) btn.hidden = true;
+    if (codeEl) codeEl.textContent = order.code;
+    if (wa1) wa1.setAttribute("href", order.wa1);
+    if (wa2) wa2.setAttribute("href", order.wa2);
+    if (sentMsg) sentMsg.hidden = false;
+  }
+
   function initKitchenOrder() {
     var btn = document.getElementById("send-kitchen-btn");
+    var orderMoreLink = document.getElementById("order-more-link");
+    if (orderMoreLink) {
+      orderMoreLink.addEventListener("click", function () {
+        clearPendingOrder();
+      });
+    }
     if (!btn) return;
     btn.addEventListener("click", function () {
       var cart = getCart();
@@ -357,7 +423,7 @@
       }
       var total = cart.reduce(function (sum, l) { return sum + l.unitPrice * l.qty; }, 0);
       var items = buildKitchenOrderItems(cart);
-      var order = {
+      var orderData = {
         table: tableNum,
         items: items,
         total: total,
@@ -365,25 +431,20 @@
         createdAt: Date.now()
       };
       btn.disabled = true;
-      firebase.database().ref("orders").push(order)
+      firebase.database().ref("orders").push(orderData)
         .then(function (ref) {
           var code = "B" + tableNum + "-" + ref.key.slice(-4).toUpperCase();
           var text = buildKitchenWhatsAppText({ table: tableNum, code: code, items: items, total: total });
-          var wa1 = document.getElementById("wa-send-1");
-          var wa2 = document.getElementById("wa-send-2");
-          if (wa1) wa1.setAttribute("href", "https://wa.me/" + KITCHEN_WHATSAPP_1 + "?text=" + encodeURIComponent(text));
-          if (wa2) wa2.setAttribute("href", "https://wa.me/" + KITCHEN_WHATSAPP_2 + "?text=" + encodeURIComponent(text));
-
+          var pending = {
+            code: code,
+            table: tableNum,
+            wa1: "https://wa.me/" + KITCHEN_WHATSAPP_1 + "?text=" + encodeURIComponent(text),
+            wa2: "https://wa.me/" + KITCHEN_WHATSAPP_2 + "?text=" + encodeURIComponent(text),
+            ts: Date.now()
+          };
+          savePendingOrder(pending);
           saveCart([]);
-          var tableWrap = document.querySelector(".cart-table-wrap");
-          var totalRow = document.querySelector(".cart-total-row");
-          if (tableWrap) tableWrap.hidden = true;
-          if (totalRow) totalRow.hidden = true;
-          btn.hidden = true;
-          var sentMsg = document.getElementById("kitchen-sent-msg");
-          var codeEl = document.getElementById("kitchen-order-code");
-          if (codeEl) codeEl.textContent = code;
-          if (sentMsg) sentMsg.hidden = false;
+          showKitchenConfirmation(pending);
         })
         .catch(function (err) {
           btn.disabled = false;
