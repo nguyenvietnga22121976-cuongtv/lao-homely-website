@@ -394,24 +394,45 @@
     var totalRow = document.querySelector(".cart-total-row");
     var sentMsg = document.getElementById("kitchen-sent-msg");
     var codeEl = document.getElementById("kitchen-order-code");
-    var wa1 = document.getElementById("wa-send-1");
-    var wa2 = document.getElementById("wa-send-2");
+    var waBoth = document.getElementById("wa-send-both");
 
     if (tableWrap) tableWrap.hidden = true;
     if (totalRow) totalRow.hidden = true;
     if (btn) btn.hidden = true;
     if (codeEl) codeEl.textContent = order.code;
-    if (wa1) wa1.setAttribute("href", order.wa1);
-    if (wa2) wa2.setAttribute("href", order.wa2);
+    if (waBoth) {
+      // Luu 2 duong link WhatsApp vao data-attribute, khong dat truc tiep vao href
+      // vi mot the <a> chi mo duoc 1 link - viec mo ca 2 duoc xu ly trong ham click bang tay.
+      waBoth.setAttribute("data-wa1", order.wa1);
+      waBoth.setAttribute("data-wa2", order.wa2);
+      waBoth.setAttribute("href", order.wa1);
+    }
     if (sentMsg) sentMsg.hidden = false;
+  }
+
+  /* Mo ca 2 link WhatsApp (2 so bep) tu 1 lan bam duy nhat.
+     Goi window.open() 2 lan lien tiep, dong bo, ngay trong handler click
+     (khong qua setTimeout/Promise) de trinh duyet khong chan popup thu 2. */
+  function sendToBothKitchenPhones(wa1, wa2) {
+    if (wa1) window.open(wa1, "_blank", "noopener");
+    if (wa2) window.open(wa2, "_blank", "noopener");
   }
 
   function initKitchenOrder() {
     var btn = document.getElementById("send-kitchen-btn");
     var orderMoreLink = document.getElementById("order-more-link");
+    var waBoth = document.getElementById("wa-send-both");
     if (orderMoreLink) {
       orderMoreLink.addEventListener("click", function () {
         clearPendingOrder();
+      });
+    }
+    if (waBoth) {
+      waBoth.addEventListener("click", function (e) {
+        e.preventDefault();
+        var wa1 = waBoth.getAttribute("data-wa1");
+        var wa2 = waBoth.getAttribute("data-wa2");
+        sendToBothKitchenPhones(wa1, wa2);
       });
     }
     if (!btn) return;
