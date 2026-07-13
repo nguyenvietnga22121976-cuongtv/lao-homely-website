@@ -1,7 +1,8 @@
 (function () {
   var CART_KEY = "homely_cart";
   var TABLE_KEY = "homely_table";
-  var WHATSAPP_DIGITS = "8562094059629";
+  var KITCHEN_WHATSAPP_1 = "8562094059629";   // 02094059629
+  var KITCHEN_WHATSAPP_2 = "8562099316688";   // 02099316688
 
   function getLang() {
     return document.documentElement.getAttribute("data-lang") || "en";
@@ -36,12 +37,15 @@
     var n = getTableNumber();
     var menuBanner = document.getElementById("table-banner");
     var menuText = document.getElementById("table-banner-text");
+    var menuWarning = document.getElementById("no-table-warning");
     if (menuBanner && menuText) {
       if (n) {
         menuText.innerHTML = tableBannerHtml(n);
         menuBanner.hidden = false;
+        if (menuWarning) menuWarning.hidden = true;
       } else {
         menuBanner.hidden = true;
+        if (menuWarning) menuWarning.hidden = false;
       }
     }
     var cartBanner = document.getElementById("table-order-banner");
@@ -95,15 +99,19 @@
     return n.toLocaleString("en-US").replace(/,/g, ".") + " Lak";
   }
 
-  function addLine(line) {
+  /* setLine: upsert (qty>0) or remove (qty<=0) a single line, matched by dish id */
+  function setLine(id, unitPrice, nameLo, nameEn, nameVi, variantLabelLo, variantLabelEn, variantLabelVi, qty) {
     var cart = getCart();
-    var existing = cart.find(function (l) {
-      return l.id === line.id && l.variantLabelEn === line.variantLabelEn;
-    });
-    if (existing) {
-      existing.qty += line.qty;
+    var idx = cart.findIndex(function (l) { return l.id === id; });
+    if (!qty || qty <= 0) {
+      if (idx !== -1) cart.splice(idx, 1);
     } else {
-      cart.push(line);
+      var line = {
+        id: id, qty: qty, unitPrice: unitPrice,
+        nameLo: nameLo, nameEn: nameEn, nameVi: nameVi,
+        variantLabelLo: variantLabelLo || "", variantLabelEn: variantLabelEn || "", variantLabelVi: variantLabelVi || ""
+      };
+      if (idx !== -1) cart[idx] = line; else cart.push(line);
     }
     saveCart(cart);
   }
@@ -124,50 +132,100 @@
     renderCartPage();
   }
 
-  /* ---------------- menu page: add-to-cart controls ---------------- */
+  /* ---------------- menu page: tick-to-select controls ---------------- */
   function initMenuControls() {
     var controlsList = document.querySelectorAll(".cart-controls[data-id]");
+    if (!controlsList.length) return;
+    var cart = getCart();
+    var hasTable = !!getTableNumber();
+
     controlsList.forEach(function (el) {
+      var id = el.getAttribute("data-id");
+      var kind = el.getAttribute("data-kind");
+      var checkbox = el.querySelector(".select-checkbox");
       var qtyInput = el.querySelector(".qty-input");
       var decBtn = el.querySelector('[data-qty-action="dec"]');
       var incBtn = el.querySelector('[data-qty-action="inc"]');
-      if (decBtn) decBtn.addEventListener("click", function () {
-        qtyInput.value = Math.max(1, parseInt(qtyInput.value || "1", 10) - 1);
-      });
-      if (incBtn) incBtn.addEventListener("click", function () {
-        qtyInput.value = Math.min(50, parseInt(qtyInput.value || "1", 10) + 1);
-      });
-      var addBtn = el.querySelector(".add-to-cart-btn");
-      if (!addBtn) return;
-      addBtn.addEventListener("click", function () {
-        var id = el.getAttribute("data-id");
-        var kind = el.getAttribute("data-kind");
-        var qty = Math.max(1, parseInt(qtyInput.value || "1", 10));
-        var nameLo = el.getAttribute("data-name-lo");
-        var nameEn = el.getAttribute("data-name-en");
-        var nameVi = el.getAttribute("data-name-vi");
-        var unitPrice, variantLabelLo = "", variantLabelEn = "", variantLabelVi = "";
-        if (kind === "variant") {
-          var select = el.querySelector(".variant-select");
-          var opt = select.options[select.selectedIndex];
-          unitPrice = parseInt(opt.value, 10);
-          variantLabelLo = opt.getAttribute("data-label-lo");
-          variantLabelEn = opt.getAttribute("data-label-en");
-          variantLabelVi = opt.getAttribute("data-label-vi");
-        } else {
-          unitPrice = parseInt(el.getAttribute("data-price"), 10);
+      var variantSelect = el.querySelector(".variant-select");
+      var nameLo = el.getAttribute("data-name-lo");
+      var nameEn = el.getAttribute("data-name-en");
+      var nameVi = el.getAttribute("data-name-vi");
+      if (!checkbox) return;
+
+      function currentUnitPrice() {
+        if (kind === "variant" && variantSelect) {
+          return parseInt(variantSelect.options[variantSelect.selectedIndex].value, 10);
         }
-        addLine({
-          id: id, qty: qty, unitPrice: unitPrice,
-          nameLo: nameLo, nameEn: nameEn, nameVi: nameVi,
-          variantLabelLo: variantLabelLo, variantLabelEn: variantLabelEn, variantLabelVi: variantLabelVi
-        });
-        addBtn.textContent = "OK";
-        setTimeout(function () {
-          addBtn.innerHTML = el.querySelector(".add-to-cart-btn") ? addBtn.innerHTML : "";
-        }, 900);
+        return parseInt(el.getAttribute("data-price"), 10);
+      }
+      function currentVariantLabels() {
+        if (kind === "variant" && variantSelect) {
+          var opt = variantSelect.options[variantSelect.selectedIndex];
+          return {
+            lo: opt.getAttribute("data-label-lo"),
+            en: opt.getAttribute("data-label-en"),
+            vi: opt.getAttribute("data-label-vi")
+          };
+        }
+        return { lo: "", en: "", vi: "" };
+      }
+      function syncLine() {
+        if (!checkbox.checked) {
+          setLine(id, 0);
+          el.classList.remove("selected");
+          return;
+        }
+        var qty = Math.max(1, parseInt(qtyInput.value || "1", 10));
+        var vl = currentVariantLabels();
+        setLine(id, currentUnitPrice(), nameLo, nameEn, nameVi, vl.lo, vl.en, vl.vi, qty);
+        el.classList.add("selected");
+      }
+
+      /* restore state from existing cart (e.g. navigating back from order page) */
+      var existing = cart.find(function (l) { return l.id === id; });
+      if (existing) {
+        checkbox.checked = true;
+        qtyInput.value = existing.qty;
+        el.classList.add("selected");
+        if (kind === "variant" && variantSelect && existing.variantLabelEn) {
+          for (var i = 0; i < variantSelect.options.length; i++) {
+            if (variantSelect.options[i].getAttribute("data-label-en") === existing.variantLabelEn) {
+              variantSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+
+      if (!hasTable) {
+        checkbox.disabled = true;
+        qtyInput.disabled = true;
+        if (decBtn) decBtn.disabled = true;
+        if (incBtn) incBtn.disabled = true;
+        if (variantSelect) variantSelect.disabled = true;
+      }
+
+      checkbox.addEventListener("change", function () {
+        syncLine();
         flashBadge();
       });
+      if (decBtn) decBtn.addEventListener("click", function () {
+        qtyInput.value = Math.max(1, parseInt(qtyInput.value || "1", 10) - 1);
+        if (checkbox.checked) syncLine();
+      });
+      if (incBtn) incBtn.addEventListener("click", function () {
+        qtyInput.value = Math.min(20, parseInt(qtyInput.value || "1", 10) + 1);
+        if (checkbox.checked) syncLine();
+      });
+      qtyInput.addEventListener("change", function () {
+        qtyInput.value = Math.max(1, Math.min(20, parseInt(qtyInput.value || "1", 10) || 1));
+        if (checkbox.checked) syncLine();
+      });
+      if (variantSelect) {
+        variantSelect.addEventListener("change", function () {
+          if (checkbox.checked) syncLine();
+        });
+      }
     });
   }
 
@@ -178,7 +236,7 @@
     setTimeout(function () { badge.classList.remove("bump"); }, 300);
   }
 
-  /* ---------------- cart / checkout page ---------------- */
+  /* ---------------- order page ---------------- */
   function lineName(line) {
     var lo = line.nameLo, en = line.nameEn, vi = line.nameVi;
     if (line.variantLabelEn) {
@@ -191,42 +249,39 @@
 
   function renderCartPage() {
     var rowsBody = document.getElementById("cart-rows");
-    if (!rowsBody) return; // not the cart page
+    if (!rowsBody) return; // not the order page
     var cart = getCart();
     var emptyMsg = document.getElementById("cart-empty-msg");
     var content = document.getElementById("cart-content");
-    var paymentStep = document.getElementById("payment-step");
-    var onlineSection = document.getElementById("online-order-section");
-    var kitchenPanel = document.getElementById("kitchen-order-panel");
+    var noTableMsg = document.getElementById("no-table-msg");
     var tableNum = getTableNumber();
 
     renderTableBanners();
 
+    if (!tableNum) {
+      if (noTableMsg) noTableMsg.hidden = false;
+      if (emptyMsg) emptyMsg.hidden = true;
+      if (content) content.hidden = true;
+      return;
+    }
+    if (noTableMsg) noTableMsg.hidden = true;
+
     if (cart.length === 0) {
       if (emptyMsg) emptyMsg.hidden = false;
       if (content) content.hidden = true;
-      if (paymentStep) paymentStep.hidden = true;
       return;
     }
     if (emptyMsg) emptyMsg.hidden = true;
     if (content) content.hidden = false;
 
-    if (tableNum) {
-      if (onlineSection) onlineSection.hidden = true;
-      if (paymentStep) paymentStep.hidden = true;
-      if (kitchenPanel) kitchenPanel.hidden = false;
-      var sentMsg = document.getElementById("kitchen-sent-msg");
-      var sendBtn = document.getElementById("send-kitchen-btn");
-      var tableWrap = document.querySelector(".cart-table-wrap");
-      var totalRow = document.querySelector(".cart-total-row");
-      if (sentMsg) sentMsg.hidden = true;
-      if (sendBtn) { sendBtn.hidden = false; sendBtn.disabled = false; }
-      if (tableWrap) tableWrap.hidden = false;
-      if (totalRow) totalRow.hidden = false;
-    } else {
-      if (onlineSection) onlineSection.hidden = false;
-      if (kitchenPanel) kitchenPanel.hidden = true;
-    }
+    var sentMsg = document.getElementById("kitchen-sent-msg");
+    var sendBtn = document.getElementById("send-kitchen-btn");
+    var tableWrap = document.querySelector(".cart-table-wrap");
+    var totalRow = document.querySelector(".cart-total-row");
+    if (sentMsg) sentMsg.hidden = true;
+    if (sendBtn) { sendBtn.hidden = false; sendBtn.disabled = false; }
+    if (tableWrap) tableWrap.hidden = false;
+    if (totalRow) totalRow.hidden = false;
 
     rowsBody.innerHTML = "";
     var total = 0;
@@ -262,7 +317,7 @@
     });
   }
 
-  /* ---------------- kitchen order (table QR flow) ---------------- */
+  /* ---------------- kitchen order (send to Firebase + WhatsApp x2) ---------------- */
   function buildKitchenOrderItems(cart) {
     return cart.map(function (line) {
       var names = lineName(line);
@@ -274,7 +329,22 @@
     });
   }
 
-function initKitchenOrder() {
+  function buildKitchenWhatsAppText(order) {
+    var lines = [];
+    lines.push("*DON DAT MON - BAN SO " + order.table + "*");
+    lines.push("Ma don: " + order.code);
+    lines.push("");
+    order.items.forEach(function (it) {
+      lines.push("- " + it.nameVi + " x" + it.qty + " = " + fmtPrice(it.subtotal));
+    });
+    lines.push("");
+    lines.push("Tong cong: " + fmtPrice(order.total));
+    lines.push("");
+    lines.push("(Gui tu he thong dat mon QR - Lao Homely Restaurant)");
+    return lines.join("\n");
+  }
+
+  function initKitchenOrder() {
     var btn = document.getElementById("send-kitchen-btn");
     if (!btn) return;
     btn.addEventListener("click", function () {
@@ -286,9 +356,10 @@ function initKitchenOrder() {
         return;
       }
       var total = cart.reduce(function (sum, l) { return sum + l.unitPrice * l.qty; }, 0);
+      var items = buildKitchenOrderItems(cart);
       var order = {
         table: tableNum,
-        items: buildKitchenOrderItems(cart),
+        items: items,
         total: total,
         status: "moi",
         createdAt: Date.now()
@@ -297,6 +368,12 @@ function initKitchenOrder() {
       firebase.database().ref("orders").push(order)
         .then(function (ref) {
           var code = "B" + tableNum + "-" + ref.key.slice(-4).toUpperCase();
+          var text = buildKitchenWhatsAppText({ table: tableNum, code: code, items: items, total: total });
+          var wa1 = document.getElementById("wa-send-1");
+          var wa2 = document.getElementById("wa-send-2");
+          if (wa1) wa1.setAttribute("href", "https://wa.me/" + KITCHEN_WHATSAPP_1 + "?text=" + encodeURIComponent(text));
+          if (wa2) wa2.setAttribute("href", "https://wa.me/" + KITCHEN_WHATSAPP_2 + "?text=" + encodeURIComponent(text));
+
           saveCart([]);
           var tableWrap = document.querySelector(".cart-table-wrap");
           var totalRow = document.querySelector(".cart-total-row");
@@ -315,82 +392,6 @@ function initKitchenOrder() {
     });
   }
 
-  function initDeliveryToggle() {
-    var radios = document.querySelectorAll('input[name="cf-delivery"]');
-    var addressWrap = document.getElementById("cf-address-wrap");
-    if (!radios.length || !addressWrap) return;
-    radios.forEach(function (r) {
-      r.addEventListener("change", function () {
-        addressWrap.hidden = (r.value === "pickup" && r.checked) || document.querySelector('input[name="cf-delivery"]:checked').value === "pickup";
-      });
-    });
-  }
-
-  function buildWhatsAppMessage(order) {
-    var lines = [];
-    lines.push("*DON HANG - LAO HOMELY RESTAURANT*");
-    lines.push("Ma don: " + order.code);
-    lines.push("");
-    order.cart.forEach(function (line) {
-      var names = lineName(line);
-      lines.push("- " + names.vi + " x" + line.qty + " = " + fmtPrice(line.unitPrice * line.qty));
-    });
-    lines.push("");
-    lines.push("Tong cong: " + fmtPrice(order.total));
-    lines.push("");
-    lines.push("Ten khach: " + order.name);
-    lines.push("SDT: " + order.phone);
-    lines.push("Hinh thuc: " + (order.delivery === "delivery" ? "Giao hang" : "Tu den lay tai quan"));
-    if (order.delivery === "delivery" && order.address) {
-      lines.push("Dia chi: " + order.address);
-    }
-    if (order.note) {
-      lines.push("Ghi chu: " + order.note);
-    }
-    lines.push("");
-    lines.push("(Da/se chuyen khoan - se gui anh chuyen khoan qua WhatsApp)");
-    return lines.join("\n");
-  }
-
-  function initCheckoutForm() {
-    var form = document.getElementById("checkout-form");
-    if (!form) return;
-    initDeliveryToggle();
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var cart = getCart();
-      if (cart.length === 0) return;
-
-      var name = document.getElementById("cf-name").value.trim();
-      var phone = document.getElementById("cf-phone").value.trim();
-      var delivery = document.querySelector('input[name="cf-delivery"]:checked').value;
-      var address = document.getElementById("cf-address").value.trim();
-      var note = document.getElementById("cf-note").value.trim();
-      if (!name || !phone) return;
-      if (delivery === "delivery" && !address) {
-        document.getElementById("cf-address").focus();
-        return;
-      }
-
-      var total = cart.reduce(function (sum, l) { return sum + l.unitPrice * l.qty; }, 0);
-      var code = "HL" + Date.now().toString().slice(-8);
-
-      document.getElementById("payment-amount").textContent = fmtPrice(total);
-      document.getElementById("order-code").textContent = code;
-      var paymentStep = document.getElementById("payment-step");
-      paymentStep.hidden = false;
-      paymentStep.scrollIntoView({ behavior: "smooth" });
-
-      var message = buildWhatsAppMessage({
-        code: code, cart: cart, total: total, name: name, phone: phone,
-        delivery: delivery, address: address, note: note
-      });
-      var waLink = "https://wa.me/" + WHATSAPP_DIGITS + "?text=" + encodeURIComponent(message);
-      document.getElementById("whatsapp-send-btn").setAttribute("href", waLink);
-    });
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
     initFirebaseApp();
     initTableFromUrl();
@@ -398,7 +399,6 @@ function initKitchenOrder() {
     updateBadge();
     initMenuControls();
     renderCartPage();
-    initCheckoutForm();
     initKitchenOrder();
   });
 })();
