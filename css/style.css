@@ -158,6 +158,11 @@ p .lang-lo,p .lang-en,p .lang-vi,
   display:flex;align-items:center;gap:.6rem;box-shadow:var(--shadow);
 }
 .table-order-banner, #table-order-banner{margin-top:0;margin-bottom:1.5rem;}
+.no-table-warning{
+  margin-top:1.2rem;padding:.9rem 1.4rem;border-radius:var(--radius);
+  background:#fff3cd;color:#7a4a00;border:2px solid #e0a800;font-weight:700;
+  display:flex;align-items:center;gap:1rem;flex-wrap:wrap;box-shadow:var(--shadow);
+}
 .kitchen-order-panel{
   margin-top:1rem;padding:1.6rem;border-radius:var(--radius);
   background:var(--cream-alt);border:2px solid var(--gold);box-shadow:var(--shadow);
@@ -167,7 +172,8 @@ p .lang-lo,p .lang-en,p .lang-vi,
   margin-top:1.2rem;padding:1rem 1.2rem;border-radius:var(--radius);
   background:#e8f5e9;border:2px solid #2e7d32;color:#1b5e20;
 }
-.kitchen-sent-msg .btn{margin-top:.8rem;}
+.kitchen-sent-msg .btn{margin-top:.8rem;display:block;width:fit-content;}
+.kitchen-sent-msg .note{font-size:.85rem;color:#1b5e20;opacity:.9;}
 
 /* ---------- menu page ---------- */
 .menu-section{margin-bottom:2.6rem;}
@@ -262,12 +268,36 @@ p .lang-lo,p .lang-en,p .lang-vi,
 }
 .cart-controls.unavailable{justify-content:space-between;color:var(--red);font-size:.85rem;}
 .qty-stepper{display:flex;align-items:center;border:1px solid var(--gold);border-radius:6px;overflow:hidden;}
+.qty-stepper:has(.qty-input:disabled){opacity:.5;}
 .qty-btn{background:var(--cream-alt);border:none;width:1.8rem;height:1.8rem;font-weight:700;cursor:pointer;color:var(--brown-dark);}
 .qty-btn:hover{background:var(--gold);}
+.qty-btn:disabled{cursor:not-allowed;opacity:.6;}
 .qty-input{width:2.6rem;text-align:center;border:none;border-left:1px solid var(--gold);border-right:1px solid var(--gold);height:1.8rem;}
 .variant-select{border:1px solid var(--gold);border-radius:6px;padding:.3rem .4rem;font-size:.82rem;max-width:220px;}
+.variant-select:disabled{opacity:.6;}
 .btn-sm{padding:.4rem 1rem;font-size:.82rem;}
 .btn-lg{padding:.9rem 2rem;font-size:1.02rem;}
+
+/* tick-to-select control */
+.select-check{
+  display:flex;align-items:center;gap:.5rem;cursor:pointer;user-select:none;
+  font-size:.9rem;font-weight:600;color:var(--brown-dark);
+}
+.select-check input.select-checkbox{
+  position:absolute;opacity:0;width:1px;height:1px;
+}
+.select-check-box{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:1.6rem;height:1.6rem;border:2px solid var(--gold);border-radius:6px;
+  background:#fff;flex-shrink:0;
+}
+.select-check-mark{opacity:0;color:#fff;font-weight:900;font-size:1.05rem;line-height:1;}
+.select-checkbox:checked ~ .select-check-box{background:var(--teal);border-color:var(--teal);}
+.select-checkbox:checked ~ .select-check-box .select-check-mark{opacity:1;}
+.select-checkbox:disabled ~ .select-check-box{opacity:.5;cursor:not-allowed;}
+.select-checkbox:focus-visible ~ .select-check-box{outline:2px solid var(--gold);outline-offset:2px;}
+.select-check-label{white-space:nowrap;}
+.menu-item.selected{background:#eef7f0;box-shadow:inset 0 0 0 2px var(--teal);border-radius:var(--radius);}
 
 /* cart table */
 .cart-table-wrap{overflow-x:auto;margin-bottom:1.2rem;}
