@@ -37,9 +37,9 @@ FIREBASE_CONFIG = {
     "messagingSenderId": "468038291835",
     "appId": "1:468038291835:web:5c70d162882a3a05a8edde",
 }
-SITE_BASE_URL = "https://nguyenvietnga22121976.github.io/lao-homely-website/"
+SITE_BASE_URL = "https://laohomelyrestaurant.github.io/lao-homely-website/"
 NUM_TABLES = 10
-ASSET_VERSION = "20260714c"  # bump this string whenever css/js changes, to bust browser cache
+ASSET_VERSION = "20260714d"  # bump this string whenever css/js changes, to bust browser cache
 
 NAV = [
     ("index.html", "ໜ້າຫຼັກ", "Home", "Trang chủ"),
@@ -667,10 +667,10 @@ with open(os.path.join(ROOT, "bep.html"), "w", encoding="utf-8") as f:
 qr_cards = []
 for n in range(1, NUM_TABLES + 1):
     qr_cards.append(f"""      <div class="qr-card">
-        <p class="qr-card-eyebrow">{SITE_NAME_VI}</p>
-        <img class="qr-card-img" src="images/qr/ban-{n}.png" alt="QR ban so {n}">
-        <p class="qr-card-table">BAN SO {n}</p>
-        <p class="qr-card-hint">Quet ma QR de xem thuc don va dat mon<br>Thanh toan tai quay sau khi dung bua</p>
+        <p class="qr-card-eyebrow">{SITE_NAME_LO}</p>
+        <img class="qr-card-img" src="images/qr/ban-{n}.png" alt="QR ໂຕະທີ {n}">
+        <p class="qr-card-table">ໂຕະທີ {n}</p>
+        <p class="qr-card-hint">ສະແກນ QR ເພື່ອເບິ່ງເມນູ ແລະ ສັ່ງອາຫານ<br>ກະລຸນາຊຳລະເງິນທີ່ເຄົາເຕີຫຼັງຈາກກິນສຳເລັດ</p>
       </div>""")
 qr_cards_html = "\n".join(qr_cards)
 
