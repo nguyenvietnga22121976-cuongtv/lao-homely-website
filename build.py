@@ -37,9 +37,9 @@ FIREBASE_CONFIG = {
     "messagingSenderId": "468038291835",
     "appId": "1:468038291835:web:5c70d162882a3a05a8edde",
 }
-SITE_BASE_URL = "https://nguyenvietnga22121976-cuongtv.github.io/lao-homely-website/"
+SITE_BASE_URL = "https://nguyenvietnga22121976.github.io/lao-homely-website/"
 NUM_TABLES = 10
-ASSET_VERSION = "20260714b"  # bump this string whenever css/js changes, to bust browser cache
+ASSET_VERSION = "20260714c"  # bump this string whenever css/js changes, to bust browser cache
 
 NAV = [
     ("index.html", "ໜ້າຫຼັກ", "Home", "Trang chủ"),
