@@ -16,6 +16,8 @@ SITE_NAME_VI = "Nhà Hàng Lao Homely"
 
 PHONE = "+856 20 9405 9629"
 WHATSAPP_DIGITS = "8562094059629"
+KITCHEN_WHATSAPP_1 = "8562094059629"   # 02094059629
+KITCHEN_WHATSAPP_2 = "8562099316688"   # 02099316688
 FACEBOOK = "Lao Homely Restaurant"
 TIKTOK = "@laohomelyrestaurant"
 CITY = "Phonxay Village, Pakse District, Champasak Province"
@@ -246,15 +248,20 @@ def cart_controls_html(item):
             <a class="btn btn-outline btn-sm" href="tel:{PHONE.replace(' ', '')}">{tri('ໂທຫາຮ້ານ', 'Call restaurant', 'Gọi cho quán')}</a>
           </div>"""
     name_attrs = f'data-name-lo="{item["lo"]}" data-name-en="{item["en"]}" data-name-vi="{item["vi"]}"'
+    check_html = f"""<label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label">{tri('ເລືອກອາຫານນີ້', 'Select this dish', 'Chọn món này')}</span>
+            </label>"""
     if kind == "simple":
         price = item["price"]
         return f"""<div class="cart-controls" data-id="{item['id']}" data-kind="simple" data-price="{price}" {name_attrs}>
+            {check_html}
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn">{tri('ໃສ່ກະຕ່າ', 'Add to Cart', 'Thêm vào giỏ')}</button>
           </div>"""
     if kind == "variant":
         options = []
@@ -266,12 +273,12 @@ def cart_controls_html(item):
             <select class="variant-select">
               {options_html}
             </select>
+            {check_html}
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn">{tri('ໃສ່ກະຕ່າ', 'Add to Cart', 'Thêm vào giỏ')}</button>
           </div>"""
     return ""
 
@@ -408,11 +415,17 @@ menu_intro = f"""
       <p class="eyebrow">{tri(SITE_NAME_LO, SITE_NAME_EN, SITE_NAME_VI)}</p>
       <h1>{tri("ເມນູອາຫານ", "Our Menu", "Thực đơn")}</h1>
       <p>{tri(
-        "ເລືອກຈຳນວນ ແລ້ວກົດ 'ໃສ່ກະຕ່າ' ເພື່ອສັ່ງອາຫານອອນລາຍ. ລາຄາອາດມີການປ່ຽນແປງ.",
-        "Choose a quantity and click 'Add to Cart' to order online. Prices may change without notice.",
-        "Chọn số lượng rồi bấm 'Thêm vào giỏ' để đặt món online. Giá có thể thay đổi.")}</p>
+        "ຕິກ 'ເລືອກອາຫານນີ້' ໃນແຕ່ລະລາຍການ ແລ້ວກົດ 'ໄປໜ້າສັ່ງອາຫານ' ເພື່ອສົ່ງອໍເດີໃຫ້ຫ້ອງຄົວ.",
+        "Tick 'Select this dish' on each item, then go to the order page to send your order to the kitchen.",
+        "Tick 'Chọn món này' ở từng món, sau đó vào trang đặt món để gửi đơn cho bếp.")}</p>
       <div id="table-banner" class="table-banner" hidden>
         <span id="table-banner-text"></span>
+      </div>
+      <div id="no-table-warning" class="no-table-warning" hidden>
+        {tri(
+          "⚠ ກະລຸນາສະແກນ QR ຢູ່ໂຕະຂອງທ່ານກ່ອນເລືອກອາຫານ",
+          "⚠ Please scan the QR code at your table before ordering",
+          "⚠ Vui lòng quét mã QR tại bàn của bạn trước khi chọn món")}
       </div>
     </div>
   </section>"""
@@ -532,7 +545,7 @@ cart_body = f"""
   <section class="page-hero">
     <div class="section-inner">
       <p class="eyebrow">{tri(SITE_NAME_LO, SITE_NAME_EN, SITE_NAME_VI)}</p>
-      <h1>{tri("ກະຕ່າ ແລະ ສັ່ງຊື້", "Cart &amp; Checkout", "Giỏ hàng &amp; Đặt món")}</h1>
+      <h1>{tri("ຢືນຢັນ ແລະ ສັ່ງອາຫານ", "Confirm &amp; Order", "Xác nhận &amp; Đặt món")}</h1>
     </div>
   </section>
 
@@ -542,9 +555,17 @@ cart_body = f"""
         <span id="table-order-banner-text"></span>
       </div>
 
+      <div id="no-table-msg" class="no-table-warning" hidden>
+        {tri(
+          "⚠ ກະລຸນາສະແກນ QR ຢູ່ໂຕະຂອງທ່ານກ່ອນ ຈຶ່ງຈະສັ່ງອາຫານໄດ້",
+          "⚠ Please scan the QR code at your table first before ordering",
+          "⚠ Vui lòng quét mã QR tại bàn của bạn trước khi đặt món")}
+        <a class="btn btn-outline btn-sm" href="menu.html">{tri("ໄປເບິ່ງເມນູ", "Go to Menu", "Xem thực đơn")}</a>
+      </div>
+
       <div id="cart-empty-msg" class="empty-cart-msg" hidden>
-        <p>{tri("ກະຕ່າຂອງທ່ານຍັງບໍ່ມີສິນຄ້າ.", "Your cart is empty.", "Giỏ hàng của bạn đang trống.")}</p>
-        <a class="btn btn-primary" href="menu.html">{tri("ໄປເບິ່ງເມນູ", "Go to Menu", "Xem thực đơn")}</a>
+        <p>{tri("ທ່ານຍັງບໍ່ໄດ້ເລືອກອາຫານ.", "You haven't selected any dishes yet.", "Bạn chưa chọn món nào.")}</p>
+        <a class="btn btn-primary" href="menu.html">{tri("ໄປເລືອກອາຫານ", "Go select dishes", "Đi chọn món")}</a>
       </div>
 
       <div id="cart-content">
@@ -567,69 +588,25 @@ cart_body = f"""
           <span id="cart-total">0 Lak</span>
         </div>
 
-        <div id="online-order-section">
-        <h2 class="section-title">{tri("ຂໍ້ມູນຜູ້ສັ່ງ", "Your Details", "Thông tin đặt hàng")}</h2>
-        <form id="checkout-form" class="checkout-form">
-          <label>{tri("ຊື່", "Full Name", "Họ và tên")} *
-            <input type="text" id="cf-name" required>
-          </label>
-          <label>{tri("ເບີໂທ", "Phone Number", "Số điện thoại")} *
-            <input type="tel" id="cf-phone" required>
-          </label>
-          <fieldset class="delivery-fieldset">
-            <legend>{tri("ຮັບເອົາແບບໃດ", "Order Type", "Hình thức nhận")}</legend>
-            <label class="radio-label"><input type="radio" name="cf-delivery" value="pickup" checked> {tri("ໄປຮັບເອງທີ່ຮ້ານ", "Pick up at restaurant", "Tự đến lấy tại quán")}</label>
-            <label class="radio-label"><input type="radio" name="cf-delivery" value="delivery"> {tri("ຈັດສົ່ງ", "Delivery", "Giao hàng")}</label>
-          </fieldset>
-          <label id="cf-address-wrap" hidden>{tri("ທີ່ຢູ່ຈັດສົ່ງ", "Delivery Address", "Địa chỉ giao hàng")}
-            <textarea id="cf-address" rows="2"></textarea>
-          </label>
-          <label>{tri("ໝາຍເຫດ", "Note", "Ghi chú")}
-            <textarea id="cf-note" rows="2"></textarea>
-          </label>
-          <button type="submit" class="btn btn-primary btn-lg">{tri("ສ້າງໃບສັ່ງຊື້", "Create Order", "Tạo đơn hàng")}</button>
-        </form>
-        </div>
-
-        <div id="kitchen-order-panel" class="kitchen-order-panel" hidden>
-          <h2 class="section-title">{tri("ສົ່ງອໍເດີໃຫ້ຫ້ອງຄົວ", "Send Order to Kitchen", "Gửi đơn cho bếp")}</h2>
+        <div id="kitchen-order-panel" class="kitchen-order-panel">
+          <h2 class="section-title">{tri("ຢືນຢັນອໍເດີ", "Confirm Order", "Xác nhận đặt món")}</h2>
           <p>{tri(
-            "ອໍເດີຂອງທ່ານຈະຖືກສົ່ງກົງໄປຫ້ອງຄົວ. ກະລຸນາຊຳລະເງິນທີ່ເຄົາເຕີຫຼັງຈາກກິນສຳເລັດ.",
-            "Your order will be sent straight to the kitchen. Please pay at the counter after your meal.",
-            "Đơn của bạn sẽ được gửi thẳng tới bếp. Vui lòng thanh toán tại quầy sau khi dùng bữa.")}</p>
-          <button type="button" id="send-kitchen-btn" class="btn btn-primary btn-lg">{tri("ສົ່ງອໍເດີໃຫ້ຫ້ອງຄົວ", "Send Order to Kitchen", "Gửi đơn cho bếp")}</button>
+            "ກົດ 'ສັ່ງອາຫານ' ເພື່ອບັນທຶກອໍເດີ ແລະ ສົ່ງໃຫ້ຫ້ອງຄົວຜ່ານ WhatsApp. ກະລຸນາຊຳລະເງິນທີ່ເຄົາເຕີຫຼັງຈາກກິນສຳເລັດ.",
+            "Tap 'Place Order' to save your order and send it to the kitchen via WhatsApp. Please pay at the counter after your meal.",
+            "Bấm 'Đặt món' để lưu đơn và gửi tới bếp qua WhatsApp. Vui lòng thanh toán tại quầy sau khi dùng bữa.")}</p>
+          <button type="button" id="send-kitchen-btn" class="btn btn-primary btn-lg">{tri("ສັ່ງອາຫານ", "Place Order", "Đặt món")}</button>
+
           <div id="kitchen-sent-msg" class="kitchen-sent-msg" hidden>
-            <p>{tri("ສົ່ງອໍເດີສຳເລັດ! ລະຫັດອໍເດີ:", "Order sent! Order code:", "Đã gửi đơn cho bếp thành công! Mã đơn:")} <strong id="kitchen-order-code"></strong></p>
+            <p>{tri("ບັນທຶກອໍເດີສຳເລັດ! ລະຫັດອໍເດີ:", "Order saved! Order code:", "Đã lưu đơn thành công! Mã đơn:")} <strong id="kitchen-order-code"></strong></p>
+            <p class="note">{tri(
+              "ຂັ້ນຕອນສຸດທ້າຍ: ກົດ 2 ປຸ່ມລຸ່ມນີ້ຕາມລຳດັບ ເພື່ອສົ່ງອໍເດີໃຫ້ຫ້ອງຄົວຜ່ານ WhatsApp (ຕ້ອງກົດ 'ສົ່ງ' ໃນແອັບ WhatsApp ອີກເທື່ອໜຶ່ງ)",
+              "Final step: tap the 2 buttons below in order to send the order to the kitchen via WhatsApp (you still need to tap 'Send' inside the WhatsApp app each time)",
+              "Bước cuối: bấm lần lượt 2 nút bên dưới để gửi đơn cho bếp qua WhatsApp (mỗi lần vẫn cần bấm 'Gửi' trong ứng dụng WhatsApp)")}</p>
+            <a id="wa-send-1" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener">{tri("Bước 1: ສົ່ງໃຫ້ຫ້ອງຄົວ (ເບີ 1)", "Step 1: Send to kitchen (Phone 1)", "Bước 1: Gửi cho bếp (SĐT 1)")}</a>
+            <a id="wa-send-2" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener">{tri("Bước 2: ສົ່ງໃຫ້ຫ້ອງຄົວ (ເບີ 2)", "Step 2: Send to kitchen (Phone 2)", "Bước 2: Gửi cho bếp (SĐT 2)")}</a>
             <a class="btn btn-outline" href="menu.html">{tri("ສັ່ງເພີ່ມ", "Order more", "Gọi thêm món khác")}</a>
           </div>
         </div>
-      </div>
-
-      <div id="payment-step" class="payment-step" hidden>
-        <h2 class="section-title">{tri("ຂັ້ນຕອນທີ 2: ຊຳລະເງິນ", "Step 2: Payment", "Bước 2: Thanh toán")}</h2>
-        <p>{tri(
-          "ກະລຸນາໂອນເງິນຕາມຍອດລວມຂ້າງລຸ່ມ ຜ່ານ QR ຫຼືເລກບັນຊີທະນາຄານຂອງຮ້ານ ແລ້ວກົດປຸ່ມສົ່ງໃບສັ່ງຊື້ຜ່ານ WhatsApp ພ້ອມຮູບຫຼັກຖານການໂອນ.",
-          "Please transfer the total amount below via the restaurant's bank QR/account, then click the button to send your order via WhatsApp along with a screenshot of the transfer.",
-          "Vui lòng chuyển khoản đúng số tiền bên dưới qua QR/tài khoản ngân hàng của quán, sau đó bấm nút gửi đơn qua WhatsApp kèm ảnh chụp màn hình chuyển khoản.")}</p>
-        <div class="bank-info-box">
-          <div class="img-placeholder ph-square qr-placeholder">
-            <span class="ph-icon">QR</span>
-            <span class="ph-label">{tri("QR ໂອນເງິນທະນາຄານ", "Bank Transfer QR", "Mã QR chuyển khoản")}</span>
-            <span class="ph-hint">-> images/qr-chuyen-khoan.png</span>
-          </div>
-          <ul class="bank-details">
-            <li><strong>{tri('ທະນາຄານ', 'Bank', 'Ngân hàng')}:</strong> [{tri('ອານຕື່ມ ວດ. BCEL / LDB', 'add e.g. BCEL / LDB', 'anh bổ sung, VD: BCEL / LDB')}]</li>
-            <li><strong>{tri('ຊື່ບັນຊີ', 'Account Name', 'Tên tài khoản')}:</strong> [{tri('ອານຕື່ມ', 'to be added', 'anh bổ sung')}]</li>
-            <li><strong>{tri('ເລກບັນຊີ', 'Account Number', 'Số tài khoản')}:</strong> [{tri('ອານຕື່ມ', 'to be added', 'anh bổ sung')}]</li>
-            <li><strong>{tri('ຈຳນວນເງິນ', 'Amount', 'Số tiền')}:</strong> <span id="payment-amount">0 Lak</span></li>
-            <li><strong>{tri('ລະຫັດອໍເດີ', 'Order Code', 'Mã đơn hàng')}:</strong> <span id="order-code">-</span></li>
-          </ul>
-        </div>
-        <a id="whatsapp-send-btn" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener">{tri("ສົ່ງໃບສັ່ງຊື້ຜ່ານ WhatsApp", "Send Order via WhatsApp", "Gửi đơn hàng qua WhatsApp")}</a>
-        <p class="note">{tri(
-          "(ໝາຍເຫດ: ນີ້ບໍ່ແມ່ນລະບົບຊຳລະເງິນອັດຕະໂນມັດ - ຮ້ານຈະຢືນຢັນອໍເດີຫຼັງຈາກໄດ້ຮັບຫຼັກຖານໂອນເງິນ)",
-          "(Note: this is not an automated payment gateway - the restaurant will confirm the order after receiving proof of transfer.)",
-          "(Ghi chú: đây không phải cổng thanh toán tự động - quán sẽ xác nhận đơn sau khi nhận được ảnh chuyển khoản.)")}</p>
       </div>
     </div>
   </section>"""

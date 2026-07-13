@@ -46,9 +46,12 @@
     <div class="section-inner">
       <p class="eyebrow"><span class="lang-lo">ຮ້ານອາຫານລາວໂຮມລີ້</span><span class="lang-en">Lao Homely Restaurant</span><span class="lang-vi">Nhà Hàng Lao Homely</span></p>
       <h1><span class="lang-lo">ເມນູອາຫານ</span><span class="lang-en">Our Menu</span><span class="lang-vi">Thực đơn</span></h1>
-      <p><span class="lang-lo">ເລືອກຈຳນວນ ແລ້ວກົດ 'ໃສ່ກະຕ່າ' ເພື່ອສັ່ງອາຫານອອນລາຍ. ລາຄາອາດມີການປ່ຽນແປງ.</span><span class="lang-en">Choose a quantity and click 'Add to Cart' to order online. Prices may change without notice.</span><span class="lang-vi">Chọn số lượng rồi bấm 'Thêm vào giỏ' để đặt món online. Giá có thể thay đổi.</span></p>
+      <p><span class="lang-lo">ຕິກ 'ເລືອກອາຫານນີ້' ໃນແຕ່ລະລາຍການ ແລ້ວກົດ 'ໄປໜ້າສັ່ງອາຫານ' ເພື່ອສົ່ງອໍເດີໃຫ້ຫ້ອງຄົວ.</span><span class="lang-en">Tick 'Select this dish' on each item, then go to the order page to send your order to the kitchen.</span><span class="lang-vi">Tick 'Chọn món này' ở từng món, sau đó vào trang đặt món để gửi đơn cho bếp.</span></p>
       <div id="table-banner" class="table-banner" hidden>
         <span id="table-banner-text"></span>
+      </div>
+      <div id="no-table-warning" class="no-table-warning" hidden>
+        <span class="lang-lo">⚠ ກະລຸນາສະແກນ QR ຢູ່ໂຕະຂອງທ່ານກ່ອນເລືອກອາຫານ</span><span class="lang-en">⚠ Please scan the QR code at your table before ordering</span><span class="lang-vi">⚠ Vui lòng quét mã QR tại bàn của bạn trước khi chọn món</span>
       </div>
     </div>
   </section>
@@ -71,12 +74,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="pad-krapao-crispy-pork-rice" data-kind="simple" data-price="50000" data-name-lo="ເຂົ້າຜັດກະເພົາໝູກຮອບ + ໄຂ່ດາວ" data-name-en="Stir-fried Crispy Pork Pad Krapao + fried egg, with rice" data-name-vi="Cơm thịt heo giòn xào lá quế + trứng ốp la">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -98,12 +105,16 @@
               <option value="45000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 45.000 Lak</option>
               <option value="50000" data-label-lo="ທະເລ" data-label-en="Seafood" data-label-vi="Hải sản">ທະເລ / Seafood / Hải sản - 50.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -125,12 +136,16 @@
               <option value="45000" data-label-lo="ໝູ" data-label-en="Pork" data-label-vi="Heo">ໝູ / Pork / Heo - 45.000 Lak</option>
               <option value="45000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 45.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -152,12 +167,16 @@
               <option value="45000" data-label-lo="ໝູ" data-label-en="Pork" data-label-vi="Heo">ໝູ / Pork / Heo - 45.000 Lak</option>
               <option value="45000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 45.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -174,12 +193,16 @@
             </div>
             <div class="menu-item-price">45.000 Lak</div>
             <div class="cart-controls" data-id="stir-fry-curry-eggplant-rice" data-kind="simple" data-price="45000" data-name-lo="ເຂົ້າຜັດເຜັດ (ໝູ/ໄກ່) ໝາກເຂືອລາວ" data-name-en="Stir-fried Pork/Chicken with Curry Paste & Lao Eggplant, with rice" data-name-vi="Cơm thịt heo/gà xào cà ri cà tím Lào">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -196,12 +219,16 @@
             </div>
             <div class="menu-item-price">55.000 Lak</div>
             <div class="cart-controls" data-id="beef-oyster-sauce-rice" data-kind="simple" data-price="55000" data-name-lo="ເຂົ້າຂົ້ວຜັດນ້ຳມັນຫອຍງົວ" data-name-en="Stir-fried Beef with Oyster Sauce, with rice" data-name-vi="Cơm bò xào dầu hào">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -222,12 +249,16 @@
               <option value="50000" data-label-lo="ໝູ" data-label-en="Pork" data-label-vi="Heo">ໝູ / Pork / Heo - 50.000 Lak</option>
               <option value="50000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 50.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -244,12 +275,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="squid-salted-egg-rice" data-kind="simple" data-price="50000" data-name-lo="ເຂົ້າໝີ່ກພັດໄຂ່ເຄັມ" data-name-en="Stir-fried Squid with Salted Egg, with rice" data-name-vi="Cơm mực xào trứng muối">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -266,12 +301,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="kale-crispy-pork-rice" data-kind="simple" data-price="50000" data-name-lo="ເຂົ້າກະນາໝູກຮອບ + ໄຂ່" data-name-en="Stir-fried Chinese Kale with Crispy Pork Belly, with rice + egg" data-name-vi="Cơm cải kale xào thịt ba chỉ giòn + trứng">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -288,12 +327,16 @@
             </div>
             <div class="menu-item-price">60.000 Lak</div>
             <div class="cart-controls" data-id="sweet-sour-fish-rice" data-kind="simple" data-price="60000" data-name-lo="ເຂົ້າປຽວຫວານປາ" data-name-en="Fish with Sweet & Sour Sauce, with rice" data-name-vi="Cơm cá sốt chua ngọt">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -310,12 +353,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="pork-teriyaki-rice" data-kind="simple" data-price="50000" data-name-lo="ເຂົ້າໝູເທຣິຢະກິ" data-name-en="Pork Teriyaki, with rice" data-name-vi="Cơm thịt heo teriyaki">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -332,12 +379,16 @@
             </div>
             <div class="menu-item-price">45.000 Lak</div>
             <div class="cart-controls" data-id="mushroom-rice" data-kind="simple" data-price="45000" data-name-lo="ເຂົ້າຂົ້ວເຫັດ" data-name-en="Stir-fried Mushrooms, with rice" data-name-vi="Cơm nấm xào">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -354,12 +405,16 @@
             </div>
             <div class="menu-item-price">55.000 Lak</div>
             <div class="cart-controls" data-id="mixed-veg-rice" data-kind="simple" data-price="55000" data-name-lo="ເຂົ້າຂົ້ວຜັກລວມ" data-name-en="Stir-fried Mixed Vegetables, with rice" data-name-vi="Cơm rau củ xào thập cẩm">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -376,12 +431,16 @@
             </div>
             <div class="menu-item-price">40.000 Lak</div>
             <div class="cart-controls" data-id="morning-glory-rice" data-kind="simple" data-price="40000" data-name-lo="ເຂົ້າຜັກບົ້ງໄຟແດງ" data-name-en="Stir-fried Morning Glory, with rice" data-name-vi="Cơm rau muống xào">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -398,12 +457,16 @@
             </div>
             <div class="menu-item-price">40.000 Lak</div>
             <div class="cart-controls" data-id="lao-omelette-rice" data-kind="simple" data-price="40000" data-name-lo="ເຂົ້າໄຂ່ຈຽວ" data-name-en="Lao Omelette, with rice" data-name-vi="Cơm trứng chiên kiểu Lào">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -420,12 +483,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="chicken-wings-rice" data-kind="simple" data-price="50000" data-name-lo="ເຂົ້າທອດປີກໄກ່" data-name-en="Fried Chicken Wings, with rice" data-name-vi="Cơm cánh gà chiên">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -447,12 +514,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="pho-chicken" data-kind="simple" data-price="50000" data-name-lo="ເຝີໄກ່" data-name-en="Vietnamese Pho with Chicken" data-name-vi="Phở gà">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -469,12 +540,16 @@
             </div>
             <div class="menu-item-price">55.000 Lak</div>
             <div class="cart-controls" data-id="pho-beef" data-kind="simple" data-price="55000" data-name-lo="ເຝີງົວ" data-name-en="Vietnamese Pho with Beef" data-name-vi="Phở bò">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -491,12 +566,16 @@
             </div>
             <div class="menu-item-price">40.000 Lak</div>
             <div class="cart-controls" data-id="banh-canh" data-kind="simple" data-price="40000" data-name-lo="ບັ່ນກັບ" data-name-en="Banh Canh" data-name-vi="Bánh canh">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -518,12 +597,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="tomato-spaghetti" data-kind="simple" data-price="50000" data-name-lo="ສະປາເກັຕິຊອດໝາກເລັ່ນ" data-name-en="Tomato Spaghetti" data-name-vi="Spaghetti sốt cà chua">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -540,12 +623,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="carbonara-spaghetti" data-kind="simple" data-price="50000" data-name-lo="ສະປາເກັຕິ ຄາໂບນາລາ" data-name-en="Carbonara Spaghetti" data-name-vi="Spaghetti Carbonara">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -572,12 +659,16 @@
               <option value="45000" data-label-lo="ໝູ" data-label-en="Pork" data-label-vi="Heo">ໝູ / Pork / Heo - 45.000 Lak</option>
               <option value="45000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 45.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -599,12 +690,16 @@
               <option value="60000" data-label-lo="ໝູ" data-label-en="Pork" data-label-vi="Heo">ໝູ / Pork / Heo - 60.000 Lak</option>
               <option value="60000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 60.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -625,12 +720,16 @@
               <option value="45000" data-label-lo="ໝູ" data-label-en="Pork" data-label-vi="Heo">ໝູ / Pork / Heo - 45.000 Lak</option>
               <option value="45000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 45.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -652,12 +751,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="larb-moo" data-kind="simple" data-price="50000" data-name-lo="ຫລວຍໝູ" data-name-en="Lao Minced Meat Salad (Larb Moo)" data-name-vi="Gỏi thịt băm kiểu Lào (Larb)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -674,12 +777,16 @@
             </div>
             <div class="menu-item-price">120.000 Lak</div>
             <div class="cart-controls" data-id="mekong-fish-salad" data-kind="simple" data-price="120000" data-name-lo="ຫລວຍປາແມ່ນ້ຳຂອງ" data-name-en="Mekong Fish Salad" data-name-vi="Gỏi cá sông Mekong">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -696,12 +803,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="grilled-eggplant-dip" data-kind="simple" data-price="50000" data-name-lo="ປົ່ນຫມາກເຂືອ" data-name-en="Lao Grilled Eggplant Dip" data-name-vi="Chẳm cà tím nướng kiểu Lào">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -718,12 +829,16 @@
             </div>
             <div class="menu-item-price">45.000 Lak</div>
             <div class="cart-controls" data-id="xoup-phak" data-kind="simple" data-price="45000" data-name-lo="ຂູບຜັກລາວ (Xoup Phak)" data-name-en="Lao Vegetable Salad (Xoup Phak)" data-name-vi="Gỏi rau kiểu Lào (Xoup Phak)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -740,12 +855,16 @@
             </div>
             <div class="menu-item-price">75.000 Lak</div>
             <div class="cart-controls" data-id="lao-salad" data-kind="simple" data-price="75000" data-name-lo="ຢຳສະຫຼັດລາວ" data-name-en="Lao Salad" data-name-vi="Gỏi Lào">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -762,12 +881,16 @@
             </div>
             <div class="menu-item-price">80.000 Lak</div>
             <div class="cart-controls" data-id="yum-seafood" data-kind="simple" data-price="80000" data-name-lo="ຢຳທະເລ" data-name-en="Yum Seafood" data-name-vi="Gỏi hải sản kiểu Lào-Thái">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -789,12 +912,16 @@
             </div>
             <div class="menu-item-price">60.000 Lak</div>
             <div class="cart-controls" data-id="spring-rolls" data-kind="simple" data-price="60000" data-name-lo="ຫໍ່ເປາະເປຍ" data-name-en="Spring Rolls" data-name-vi="Chả giò (nem rán)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -811,12 +938,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="chicken-wings-side" data-kind="simple" data-price="50000" data-name-lo="ທອດປີກໄກ່" data-name-en="Fried Chicken Wings (no rice)" data-name-vi="Cánh gà chiên (dùng riêng)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -833,12 +964,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="french-fries" data-kind="simple" data-price="50000" data-name-lo="ທອດມັນຝຣັ່ງ" data-name-en="French Fries" data-name-vi="Khoai tây chiên">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -855,12 +990,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="mushroom-side" data-kind="simple" data-price="50000" data-name-lo="ຂົ້ວເຫັດ" data-name-en="Stir-fried Mushroom (no rice)" data-name-vi="Nấm xào (dùng riêng, không cơm)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -877,12 +1016,16 @@
             </div>
             <div class="menu-item-price">60.000 Lak</div>
             <div class="cart-controls" data-id="mixed-veg-side" data-kind="simple" data-price="60000" data-name-lo="ຂົ້ວຜັກລວມ" data-name-en="Stir-fried Mixed Vegetables (no rice)" data-name-vi="Rau củ xào thập cẩm (dùng riêng, không cơm)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -899,12 +1042,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="morning-glory-side" data-kind="simple" data-price="50000" data-name-lo="ຜັກບົ້ງໄຟແດງ" data-name-en="Stir-fried Morning Glory (no rice)" data-name-vi="Rau muống xào (dùng riêng, không cơm)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -926,12 +1073,16 @@
               <option value="60000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 60.000 Lak</option>
               <option value="60000" data-label-lo="ທະເລ" data-label-en="Seafood" data-label-vi="Hải sản">ທະເລ / Seafood / Hải sản - 60.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -948,12 +1099,16 @@
             </div>
             <div class="menu-item-price">70.000 Lak</div>
             <div class="cart-controls" data-id="squid-salted-egg-side" data-kind="simple" data-price="70000" data-name-lo="ມິກພັດໄຂ່ເຄັມ" data-name-en="Stir-fried Squid with Salted Egg (no rice)" data-name-vi="Mực xào trứng muối (dùng riêng, không cơm)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -970,12 +1125,16 @@
             </div>
             <div class="menu-item-price">80.000 Lak</div>
             <div class="cart-controls" data-id="sweet-sour-fish-side" data-kind="simple" data-price="80000" data-name-lo="ປົ້ວຫວານປາ" data-name-en="Fish with Sweet & Sour Sauce (no rice)" data-name-vi="Cá sốt chua ngọt (dùng riêng, không cơm)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -997,12 +1156,16 @@
             </div>
             <div class="menu-item-price">100.000 Lak</div>
             <div class="cart-controls" data-id="beef-steak" data-kind="simple" data-price="100000" data-name-lo="ສະເຕັກງົວ" data-name-en="Beef Steak" data-name-vi="Bò bít tết">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1019,12 +1182,16 @@
             </div>
             <div class="menu-item-price">80.000 Lak</div>
             <div class="cart-controls" data-id="shaking-beef" data-kind="simple" data-price="80000" data-name-lo="ລຸກລັກງົວ" data-name-en="Shaking Beef" data-name-vi="Bò lúc lắc">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1041,12 +1208,16 @@
             </div>
             <div class="menu-item-price">70.000 Lak</div>
             <div class="cart-controls" data-id="fried-sour-fish" data-kind="simple" data-price="70000" data-name-lo="ຈືນສົ້ມປາ" data-name-en="Fried Sour Fish" data-name-vi="Cá chua chiên giòn">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1073,12 +1244,16 @@
               <option value="50000" data-label-lo="ໄກ່" data-label-en="Chicken" data-label-vi="Gà">ໄກ່ / Chicken / Gà - 50.000 Lak</option>
               <option value="55000" data-label-lo="ງົວ" data-label-en="Beef" data-label-vi="Bò">ງົວ / Beef / Bò - 55.000 Lak</option>
             </select>
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1095,12 +1270,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="pork-ribs-broth" data-kind="simple" data-price="50000" data-name-lo="ຕົ້ມແຊບກະດູກໝູ" data-name-en="Fiery Pork Ribs Broth" data-name-vi="Canh sườn heo cay kiểu Lào-Thái">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1117,12 +1296,16 @@
             </div>
             <div class="menu-item-price">50.000 Lak</div>
             <div class="cart-controls" data-id="clear-soup-tofu-pork" data-kind="simple" data-price="50000" data-name-lo="ຕົ້ມຈືດ" data-name-en="Clear Soup with Tofu and Minced Pork" data-name-vi="Canh trong đậu hũ thịt băm">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1139,12 +1322,16 @@
             </div>
             <div class="menu-item-price">80.000 Lak</div>
             <div class="cart-controls" data-id="tom-yum-goong" data-kind="simple" data-price="80000" data-name-lo="ຕົ້ມຍຳກຸ້ງ" data-name-en="Tom Yum Goong" data-name-vi="Tom Yum tôm">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1161,12 +1348,16 @@
             </div>
             <div class="menu-item-price">120.000 Lak</div>
             <div class="cart-controls" data-id="tom-yum-pa" data-kind="simple" data-price="120000" data-name-lo="ຕົ້ມຍຳປານ້ຳ" data-name-en="Tom Yum Pa" data-name-vi="Tom Yum cá">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1183,12 +1374,16 @@
             </div>
             <div class="menu-item-price">90.000 Lak</div>
             <div class="cart-controls" data-id="tom-som-pa" data-kind="simple" data-price="90000" data-name-lo="ຕົ້ມສົ້ມປາ" data-name-en="Tom Som Pa - Authentic Lao Sour Fish Soup" data-name-vi="Canh chua cá kiểu Lào (Tom Som Pa)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1210,12 +1405,16 @@
             </div>
             <div class="menu-item-price">15.000 Lak</div>
             <div class="cart-controls" data-id="steamed-rice" data-kind="simple" data-price="15000" data-name-lo="ເຂົ້າຈ້າວ" data-name-en="Steamed Rice" data-name-vi="Cơm trắng">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1232,12 +1431,16 @@
             </div>
             <div class="menu-item-price">15.000 Lak</div>
             <div class="cart-controls" data-id="sticky-rice" data-kind="simple" data-price="15000" data-name-lo="ເຂົ້າໜຽວ" data-name-en="Sticky Rice" data-name-vi="Xôi (cơm nếp)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1259,12 +1462,16 @@
             </div>
             <div class="menu-item-price">35.000 Lak</div>
             <div class="cart-controls" data-id="cappuccino" data-kind="simple" data-price="35000" data-name-lo="ຄາປູຊິໂນ (ຮ້ອນ/ເຢັນ)" data-name-en="Cappuccino (iced / hot)" data-name-vi="Cappuccino (đá/nóng)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1281,12 +1488,16 @@
             </div>
             <div class="menu-item-price">30.000 Lak</div>
             <div class="cart-controls" data-id="americano" data-kind="simple" data-price="30000" data-name-lo="ອາເມຣິກາໂນ (ຮ້ອນ/ເຢັນ)" data-name-en="Americano (iced / hot)" data-name-vi="Americano (đá/nóng)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1303,12 +1514,16 @@
             </div>
             <div class="menu-item-price">35.000 Lak</div>
             <div class="cart-controls" data-id="latte" data-kind="simple" data-price="35000" data-name-lo="ລາເຕ້ (ຮ້ອນ/ເຢັນ)" data-name-en="Latte (iced / hot)" data-name-vi="Latte (đá/nóng)">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1325,12 +1540,16 @@
             </div>
             <div class="menu-item-price">35.000 Lak</div>
             <div class="cart-controls" data-id="orange-juice" data-kind="simple" data-price="35000" data-name-lo="ນ້ຳໝາກກ້ຽງສົດ" data-name-en="Fresh Orange Juice" data-name-vi="Nước cam tươi">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1347,12 +1566,16 @@
             </div>
             <div class="menu-item-price">40.000 Lak</div>
             <div class="cart-controls" data-id="avocado-smoothie" data-kind="simple" data-price="40000" data-name-lo="ອາໂວກາໂດປັ່ນ" data-name-en="Avocado Smoothie" data-name-vi="Sinh tố bơ">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1369,12 +1592,16 @@
             </div>
             <div class="menu-item-price">40.000 Lak</div>
             <div class="cart-controls" data-id="strawberry-yogurt" data-kind="simple" data-price="40000" data-name-lo="ປັ່ນສະຕໍເບີຣີໂຢເກີດ" data-name-en="Strawberry Yogurt Smoothie" data-name-vi="Sinh tố dâu sữa chua">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1391,12 +1618,16 @@
             </div>
             <div class="menu-item-price">40.000 Lak</div>
             <div class="cart-controls" data-id="blueberry-yogurt" data-kind="simple" data-price="40000" data-name-lo="ປັ່ນບູເບີຣີໂຢເກີດ" data-name-en="Blueberry Yogurt Smoothie" data-name-vi="Sinh tố việt quất sữa chua">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1413,12 +1644,16 @@
             </div>
             <div class="menu-item-price">40.000 Lak</div>
             <div class="cart-controls" data-id="matcha-latte" data-kind="simple" data-price="40000" data-name-lo="ມັດຊະລາເຕ້" data-name-en="Matcha Latte" data-name-vi="Matcha Latte">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
@@ -1435,12 +1670,16 @@
             </div>
             <div class="menu-item-price">35.000 Lak</div>
             <div class="cart-controls" data-id="thai-matcha" data-kind="simple" data-price="35000" data-name-lo="ຊາໄທ" data-name-en="Thai Matcha" data-name-vi="Trà Thái matcha">
+            <label class="select-check">
+              <input type="checkbox" class="select-checkbox">
+              <span class="select-check-box"><span class="select-check-mark">&#10003;</span></span>
+              <span class="select-check-label"><span class="lang-lo">ເລືອກອາຫານນີ້</span><span class="lang-en">Select this dish</span><span class="lang-vi">Chọn món này</span></span>
+            </label>
             <div class="qty-stepper">
               <button type="button" class="qty-btn" data-qty-action="dec">-</button>
               <input type="number" class="qty-input" value="1" min="1" max="20">
               <button type="button" class="qty-btn" data-qty-action="inc">+</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"><span class="lang-lo">ໃສ່ກະຕ່າ</span><span class="lang-en">Add to Cart</span><span class="lang-vi">Thêm vào giỏ</span></button>
           </div>
           </div>
         </div>
