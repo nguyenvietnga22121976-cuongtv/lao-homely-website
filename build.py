@@ -38,7 +38,7 @@ FIREBASE_CONFIG = {
 }
 SITE_BASE_URL = "https://nguyenvietnga22121976-cuongtv.github.io/lao-homely-website/"
 NUM_TABLES = 10
-ASSET_VERSION = "20260713a"  # bump this string whenever css/js changes, to bust browser cache
+ASSET_VERSION = "20260713b"  # bump this string whenever css/js changes, to bust browser cache
 
 NAV = [
     ("index.html", "ໜ້າຫຼັກ", "Home", "Trang chủ"),
@@ -605,7 +605,11 @@ cart_body = f"""
               "Bước cuối: bấm lần lượt 2 nút bên dưới để gửi đơn cho bếp qua WhatsApp (mỗi lần vẫn cần bấm 'Gửi' trong ứng dụng WhatsApp)")}</p>
             <a id="wa-send-1" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener">{tri("Bước 1: ສົ່ງໃຫ້ຫ້ອງຄົວ (ເບີ 1)", "Step 1: Send to kitchen (Phone 1)", "Bước 1: Gửi cho bếp (SĐT 1)")}</a>
             <a id="wa-send-2" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener">{tri("Bước 2: ສົ່ງໃຫ້ຫ້ອງຄົວ (ເບີ 2)", "Step 2: Send to kitchen (Phone 2)", "Bước 2: Gửi cho bếp (SĐT 2)")}</a>
-            <a class="btn btn-outline" href="menu.html">{tri("ສັ່ງເພີ່ມ", "Order more", "Gọi thêm món khác")}</a>
+            <p class="note" style="margin-top:.6rem;">{tri(
+              "ຖ້າ WhatsApp ບໍ່ຂຶ້ນ ຫຼື ບໍ່ໄດ້ກົດສົ່ງ, ສາມາດກັບມາໜ້ານີ້ ແລ້ວກົດ 2 ປຸ່ມຂ້າງເທິງໃໝ່ໄດ້ (ບໍ່ຕ້ອງເລືອກອາຫານຄືນ)",
+              "If WhatsApp didn't open or you didn't tap Send, you can come back to this page and tap the 2 buttons above again (no need to re-select dishes)",
+              "Nếu WhatsApp không mở hoặc chưa bấm Gửi, anh có thể quay lại trang này và bấm lại 2 nút trên bất cứ lúc nào (không cần chọn lại món)")}</p>
+            <a id="order-more-link" class="btn btn-outline" href="menu.html">{tri("ສັ່ງເພີ່ມ", "Order more", "Gọi thêm món khác")}</a>
           </div>
         </div>
       </div>
