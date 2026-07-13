@@ -19,6 +19,7 @@ WHATSAPP_DIGITS = "8562094059629"
 KITCHEN_WHATSAPP_1 = "8562094059629"   # 02094059629
 KITCHEN_WHATSAPP_2 = "8562098676643"   # 02098676643
 FACEBOOK = "Lao Homely Restaurant"
+FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61591822893556"
 TIKTOK = "@laohomelyrestaurant"
 CITY = "Phonxay Village, Pakse District, Champasak Province"
 ADDRESS_LO = "ບ້ານໂພນໄຊ, ເມືອງປາກເຊ, ແຂວງຈຳປາສັກ"
@@ -38,7 +39,7 @@ FIREBASE_CONFIG = {
 }
 SITE_BASE_URL = "https://nguyenvietnga22121976-cuongtv.github.io/lao-homely-website/"
 NUM_TABLES = 10
-ASSET_VERSION = "20260714a"  # bump this string whenever css/js changes, to bust browser cache
+ASSET_VERSION = "20260714b"  # bump this string whenever css/js changes, to bust browser cache
 
 NAV = [
     ("index.html", "ໜ້າຫຼັກ", "Home", "Trang chủ"),
@@ -98,7 +99,7 @@ def footer():
       </div>
       <div class="footer-col">
         <h4>{tri("ຕິດຕາມພວກເຮົາ", "Follow Us", "Theo dõi chúng tôi")}</h4>
-        <p>Facebook: {FACEBOOK}</p>
+        <p>Facebook: <a href="{FACEBOOK_URL}" target="_blank" rel="noopener">{FACEBOOK}</a></p>
         <p>TikTok: {TIKTOK}</p>
       </div>
     </div>
@@ -522,7 +523,7 @@ contact_body = f"""
           <li><strong>{tri('ທີ່ຢູ່', 'Address', 'Địa chỉ')}:</strong> {tri(ADDRESS_LO, ADDRESS_EN, ADDRESS_VI)}</li>
           <li><strong>{tri('ໂທລະສັບ', 'Phone', 'Điện thoại')}:</strong> <a href="tel:{PHONE.replace(' ', '')}">{PHONE}</a></li>
           <li><strong>WhatsApp:</strong> <a href="https://wa.me/{WHATSAPP_DIGITS}" target="_blank" rel="noopener">{PHONE}</a></li>
-          <li><strong>Facebook:</strong> {FACEBOOK}</li>
+          <li><strong>Facebook:</strong> <a href="{FACEBOOK_URL}" target="_blank" rel="noopener">{FACEBOOK}</a></li>
           <li><strong>TikTok:</strong> {TIKTOK}</li>
           <li><strong>{tri('ໂມງເປີດ-ປິດ', 'Opening Hours', 'Giờ mở cửa')}:</strong> 10:30 - 22:00</li>
         </ul>
